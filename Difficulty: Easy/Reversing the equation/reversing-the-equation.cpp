@@ -6,32 +6,31 @@ using namespace std;
 class Solution
 {
   public:
-    void reverse(string &s, int start, int end){
+    void reverse(string &s){
+        int start = 0, end = s.length()-1;
         while(start <= end){
-            swap(s[start++],s[end--]);
+            swap(s[start++], s[end--]);
         }
-        // cout<<"Reverse is "<<s<<endl;
     }
     string reverseEqn (string s)
         {
-            reverse(s, 0, s.size()-1);
             int n = s.length();
-            string rev = s, temp;
-            // cout<<"Reverse = "<<rev<<endl;
-            for(int i=0;i<n;i++){
-                int j = i;
-                while(j < n && s[j] >= '0' && s[j] <= '9'){
-                    j++;
+            string temp = "", res = "";
+            for(int i=n-1;i>=0;i--){
+                if(s[i] >= '0' && s[i] <= '9'){
+                    temp += s[i];
                 }
-                if( j > n) j--;
-                // cout<<i<<" "<<j<<" ";
-                if(i+1 < j) {
-                    reverse(s, i, j-1);
-                    i = j;
+                else{
+                    reverse(temp);
+                    res += temp + s[i];
+                    temp = "";
                 }
-                // cout<<endl;
             }
-            return s;
+            if(temp != ""){
+                reverse(temp);
+                res += temp;
+            }
+            return res;
             //code here.
         }
 };
