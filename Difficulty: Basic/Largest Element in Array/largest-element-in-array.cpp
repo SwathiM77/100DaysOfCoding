@@ -12,11 +12,11 @@ class Solution
 public:
     int largest(vector<int> &arr, int n)
     {
-        int res = INT_MIN;
+        int maxi = INT_MIN;
         for(int i=0;i<n;i++){
-            res = max(res, arr[i]);
+            maxi = max(arr[i], maxi);
         }
-        return res;
+        return maxi;
     }
 };
 
