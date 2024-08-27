@@ -14,29 +14,25 @@ class Solution {
     int celebrity(vector<vector<int> >& mat) {
         int n = mat.size();
         int m = mat[0].size();
-        int resInd = -1;
+        int knowMe[n] = {0};
+        int Iknow[n] = {0};
+        
         for(int i=0;i<n;i++){
-            int known = 0;
             for(int j=0;j<m;j++){
-                if(mat[i][j] != 0){
-                    known = 1;
-                    break;
+                if(mat[i][j] == 1){
+                    knowMe[j]++;
+                    Iknow[i]++;
                 }
             }
-            if(known == 0){
-                resInd = i;
-            }
         }
-        
-        if(resInd == -1) return resInd;
         
         for(int i=0;i<n;i++){
-            if(resInd != -1 && i != resInd && mat[i][resInd] != 1){
-                return -1;
+            // cout<<knowMe[i]<<" "<<Iknow[i]<<endl;
+            if(knowMe[i] == n-1 && Iknow[i] == 0){
+                return i;
             }
         }
-        
-        return resInd;
+        return -1;
         // code here
     }
 };
