@@ -11,28 +11,32 @@ using namespace std;
 class Solution {
   public:
     // Function to find if there is a celebrity in the party or not.
-    int celebrity(vector<vector<int> >& mat) {
+    int celebrity(vector<vector<int> >& mat) 
         int n = mat.size();
         int m = mat[0].size();
-        int knowMe[n] = {0};
-        int Iknow[n] = {0};
+        int top = 0, bottom = n-1;
         
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(mat[i][j] == 1){
-                    knowMe[j]++;
-                    Iknow[i]++;
-                }
+        while(top < bottom){
+            if(mat[top][bottom] == 1){
+                top++;
+            }
+            else if(mat[bottom][top] == 1){
+                bottom--;
+            }
+            else{
+                top++;
+                bottom--;
             }
         }
         
+        if(top > bottom) return -1;
+        // cout<<"Top="<<top<<endl;
         for(int i=0;i<n;i++){
-            // cout<<knowMe[i]<<" "<<Iknow[i]<<endl;
-            if(knowMe[i] == n-1 && Iknow[i] == 0){
-                return i;
+            if(i != top && (mat[top][i] != 0 || mat[i][top] != 1)){
+                return -1;
             }
         }
-        return -1;
+        return top;
         // code here
     }
 };
