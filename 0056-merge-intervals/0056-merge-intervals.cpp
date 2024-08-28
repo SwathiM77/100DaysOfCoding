@@ -7,18 +7,17 @@ public:
         for(int i=0;i<n;i++){
             int start = intervals[i][0];
             int end = intervals[i][1];
-            if(!ans.empty() && ans.back()[1] >= end ){
-                continue;
+            if(ans.empty() || ans.back()[1] < start){
+                ans.push_back(intervals[i]);
             }
-            for(int j=i+1;j<n;j++){
-                if(end >= intervals[j][0]){
-                    end = max(intervals[j][1], end);
-                }
-                else{
-                    break;
-                }
+            else{
+                ans.back()[1] = max(ans.back()[1], end);
             }
-            ans.push_back({start,end});
+            
+            // if(!ans.empty() && end >= ans.back()[1]){
+            //     end = max(intervals[i][1], end);
+            // }
+            // ans.push_back({start,end});
         }
         return ans;
     }
