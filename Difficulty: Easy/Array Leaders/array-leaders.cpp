@@ -13,14 +13,14 @@ class Solution {
   public:
     vector<int> leaders(int n, int arr[]) {
         // Code here
-        int maxi[n] = {0}, mini[n] = {0};
+        int maxi[n] = {0};//, mini[n] = {0};
         for(int i=n-2;i>=0;i--){
             maxi[i] = max(maxi[i+1], arr[i+1]);
-            mini[i] = min(mini[i+1], arr[i+1]);
+            //mini[i] = min(mini[i+1], arr[i+1]);
         }
         vector<int>res;
         for(int i=0;i<n;i++){
-            if(arr[i] > mini[i] && arr[i] >= maxi[i]){
+            if(arr[i] >= maxi[i] ){//arr[i] > mini[i] && 
                 res.push_back(arr[i]);
             }
         }
