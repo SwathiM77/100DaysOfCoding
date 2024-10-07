@@ -6,15 +6,16 @@ using namespace std;
 class Solution{
 public:
     int evenlyDivides(int N){
+        //code here
         int count = 0, temp = N;
-        while(N > 0){
-            int dig = N % 10;
-            if((dig != 0) && (temp % dig == 0))
+        while(N>0){
+            int dig = N%10;
+            if(dig && (temp % dig == 0)){
                 count++;
+            }
             N = N/10;
         }
         return count;
-        //code here
     }
 };
 
