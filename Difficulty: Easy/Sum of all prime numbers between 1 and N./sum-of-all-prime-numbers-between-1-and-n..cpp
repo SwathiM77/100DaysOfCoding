@@ -9,26 +9,23 @@ using namespace std;
 
 class Solution{
 	public:
-	vector<bool> prepareSeive(int n){
-	    vector<bool>seive(1000000, true);
-	    seive[0] = seive[1] = false;
-	    for(int i=2;i*i<=n;i++){
-	        if(seive[i]){
-	            for(int j=i*i;j<=n;j+=i){
-	                seive[j] = false;
-	            }
-	        }
-	    }
-	    return seive;
-	}
-   	
    	long long int prime_Sum(int n){
-   	    vector<bool>prime = prepareSeive(n);
-   	    long long sum = 0;
+   	    // bool prime[1000000];
+   	    // fill_n(prime, 1000000, true);
+   	    vector<bool>prime(1000000, true);
+   	    prime[0] = prime[1] = false;
+   	    long long int sum = 0;
+   	    for(int i=2;i*i<=n;i++){
+   	        if(prime[i]){
+   	            for(int j=i*i;j<=n;j+=i){
+   	                prime[j] = false;
+   	            }
+   	        }
+   	    }
    	    for(int i=0;i<=n;i++){
    	        if(prime[i]){
    	            sum += i;
-                // cout<<i<<" ";   	            
+   	            // cout<<"Sum = "<<sum<<endl;
    	        }
    	    }
    	    return sum;
