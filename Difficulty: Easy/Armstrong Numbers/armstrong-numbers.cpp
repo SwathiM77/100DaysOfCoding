@@ -9,14 +9,16 @@ using namespace std;
 class Solution {
   public:
     string armstrongNumber(int n) {
-        int sum = 0, temp = n;
-        while(n > 0){
-            int dig = n%10;
-            sum += dig*dig*dig;
+        int res = 0, temp = n;
+        while(n > 0)
+        {
+            res += pow(n%10, 3);
             n = n/10;
         }
-        if(temp  == sum) return "true";
-        else return "false";
+        if(res == temp){
+            return "true";
+        }
+        return "false";
         // code here
     }
 };
