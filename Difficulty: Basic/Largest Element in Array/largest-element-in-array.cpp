@@ -18,11 +18,8 @@ class Solution {
             if(maxi < i){
                 maxi = i;
             }
-            if(second < maxi && second < i){
-                second = i;
-            }
         }
-        return second;
+        return maxi;
         // code here
     }
 };
