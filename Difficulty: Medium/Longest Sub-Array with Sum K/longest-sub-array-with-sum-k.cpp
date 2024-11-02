@@ -14,9 +14,9 @@ class Solution {
             if(sum == k){
                 maxlen = i+1;
             }
-            int req = sum - k;
-            if(presum.find(req) != presum.end()){
-                maxlen = max(maxlen, i-presum[req]);
+            int rem = sum - k;
+            if(presum.find(rem) != presum.end()){
+                maxlen = max(maxlen, i-presum[rem]);
             }
             if(presum.find(sum) == presum.end()){
                 presum[sum] = i;
