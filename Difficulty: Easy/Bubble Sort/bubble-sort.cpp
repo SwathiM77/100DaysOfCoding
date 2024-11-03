@@ -21,12 +21,16 @@ class Solution {
   public:
     // Function to sort the array using bubble sort algorithm.
     void bubbleSort(int arr[], int n) {
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n-1;i++){
+            bool isSwapped = false;
             for(int j=0;j<n-i-1;j++){
                 if(arr[j] > arr[j+1]){
+                    isSwapped = true;
                     swap(arr[j], arr[j+1]);
                 }
             }
+            if(isSwapped == false)
+                break;
         }
         // Your code here
     }
@@ -60,7 +64,9 @@ int main() {
 
         ob.bubbleSort(arr, n);
         printArray(arr, n);
-    }
+    
+cout << "~" << "\n";
+}
     return 0;
 }
 // } Driver Code Ends
