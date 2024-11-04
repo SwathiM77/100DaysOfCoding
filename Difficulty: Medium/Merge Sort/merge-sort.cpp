@@ -6,37 +6,34 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    void merge(vector<int>&arr, int l, int mid, int r){
-        int i=l, j=mid+1;
-        vector<int>res;
-        while(i<=mid && j<=r){
-            if(arr[i] < arr[j]){
-                res.push_back(arr[i++]);
+    void merge(vector<int>&arr, int l, int m, int r){
+        int left = l, right = m+1;
+        vector<int>temp;
+        while(left <= m && right <=r){
+            if(arr[left] <= arr[right]){
+                temp.push_back(arr[left++]);
             }
             else{
-                res.push_back(arr[j++]);
+                temp.push_back(arr[right++]);
             }
         }
-        while(i<=mid){
-            res.push_back(arr[i++]);
+        while(left <= m){
+            temp.push_back(arr[left++]);
         }
-        while(j<=r){
-            res.push_back(arr[j++]);
+        while(right <= r){
+            temp.push_back(arr[right++]);
         }
         for(int i=l;i<=r;i++){
-            arr[i] = res[i-l];
+            arr[i] = temp[i-l];
         }
     }
     void mergeSort(vector<int>& arr, int l, int r) {
-        // code here
         if(l >= r) return;
-        
         int mid = (l+r)/2;
-        
         mergeSort(arr, l, mid);
         mergeSort(arr, mid+1, r);
-        
         merge(arr, l, mid, r);
+        // code here
     }
 };
 
